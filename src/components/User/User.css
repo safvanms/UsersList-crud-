@@ -1,0 +1,50 @@
+.head{
+     display: flex;
+     justify-content: center;
+}
+
+.users-page{
+     display: flex;
+     justify-content: center;
+    gap: 50px;
+}
+
+.details{
+     width: 50%;
+     padding: 20px;
+     display: flex;
+     flex-wrap: wrap;
+}
+
+.form{
+     width: 50%;
+     display: flex;
+     justify-content: center;
+}
+
+form{
+     display: inline-flex;
+     flex-direction: column;
+     height: 100%;
+     gap: 5px;
+     position: fixed;
+     top: 5;
+}
+
+.container{
+     border: 1px solid black;
+     margin-bottom: 20px;
+     height: 150px;
+     width: 200px;
+}
+
+p{
+     margin: 0;
+}
+
+.delete   {
+     margin-top: 10px;
+     background-color: rgb(212, 25, 25);
+}
+
+

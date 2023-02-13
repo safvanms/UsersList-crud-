@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "mike",
+      "designation": "software",
+      "place": "uk"
+    },
+    {
+      "id": 2,
+      "name": "john",
+      "designation": "it",
+      "place": "uae"
+    },
+    {
+      "id": 3,
+      "name": "tessa",
+      "designation": "manager",
+      "place": "canada"
+    },
+    {
+      "id": 4,
+      "name": "kumar",
+      "designation": "architect",
+      "place": "us"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+.nav{
+     padding: 20px;
+     background-color: rgb(237, 236, 234);
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+}
+
+h3{
+     margin-left: 20px;
+     text-decoration: none !important;
+    color: rgb(97, 16, 237);
+}
+
+h3:hover{
+     color: black;
+}
