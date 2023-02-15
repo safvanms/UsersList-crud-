@@ -19,10 +19,10 @@ export default function User() {
   //user details getting from json server by axios
 
   useEffect(() => {
-	setLoading(true)
+    setLoading(true)
     axios.get('http://localhost:3000/users').then((res) => {
       setDatas(res.data)
-	  setLoading(false)
+      setLoading(false)
     })
   }, [])
 
@@ -38,10 +38,10 @@ export default function User() {
     if (editMode === true) {
       updateItem()
     } else {
-		setLoading(true)
+      setLoading(true)
       await axios.post('http://localhost:3000/users', formData)
       setDatas([...datas, formData])
-	  setLoading(false)
+      setLoading(false)
       setFormData(initial)
     }
   }
@@ -65,7 +65,7 @@ export default function User() {
       id: editId,
       ...formData,
     }
-	setLoading(true)
+    setLoading(true)
     const setup = axios.put(`http://localhost:3000/users/${editId}`, updates)
     setDatas(
       datas.map((element) => {
@@ -75,7 +75,7 @@ export default function User() {
         return element
       }),
     )
-	setLoading(false)
+    setLoading(false)
     setEditId(null)
     setEditMode(false)
     setFormData(initial)
@@ -84,20 +84,21 @@ export default function User() {
   // for delete a user
 
   function handleDelete(id) {
-	setLoading(true);
-  
-	axios.delete(`http://localhost:3000/users/${id}`)
-	  .then(() => {
-		const filteredData = datas.filter((data) => data.id !== id);
-		if (window.confirm('Are you sure you want to delete this item?')) {
-		  setDatas(filteredData);
-		}
-		setLoading(false);
-	  })
-	  .catch((error) => {
-		console.error(`Failed to delete data with ID ${id}. Error: ${error}`);
-		setLoading(false);
-	  });
+    setLoading(true)
+
+    axios
+      .delete(`http://localhost:3000/users/${id}`)
+      .then(() => {
+        const filteredData = datas.filter((data) => data.id !== id)
+        alert('User deleted')
+        setDatas(filteredData)
+
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.error(`Failed to delete data with ID ${id}. Error: ${error}`)
+        setLoading(false)
+      })
   }
 
   return (
@@ -107,29 +108,29 @@ export default function User() {
       </div>
       <div className="users-page">
         <div className="details">
-			{loading && <div className="load">
-				<div className='loader'></div>
-				</div>}
-          {datas ? (
-            datas.map(({ id, name, designation, place }) => {
-              return (
-                <div className="container">
-                  <p>Id : {id}</p>
-                  <p>Name : {name}</p>
-                  <p>Designation : {designation}</p>
-                  <p>Place : {place}</p>
-                  <button onClick={() => handleEdit(id)}>Edit Details</button>
-                  <br />
-                  <button className="delete" onClick={() => handleDelete(id)}>
-                    Dlete User
-                  </button>
-                  <br />
-                </div>
-              )
-            })
-          ) : (
-           ""
+          {loading && (
+            <div className="load">
+              <div className="loader"></div>
+            </div>
           )}
+          {datas
+            ? datas.map(({ id, name, designation, place }) => {
+                return (
+                  <div className="container">
+                    <p>Id : {id}</p>
+                    <p>Name : {name}</p>
+                    <p>Designation : {designation}</p>
+                    <p>Place : {place}</p>
+                    <button onClick={() => handleEdit(id)}>Edit Details</button>
+                    <br />
+                    <button className="delete" onClick={() => handleDelete(id)}>
+                      Dlete User
+                    </button>
+                    <br />
+                  </div>
+                )
+              })
+            : ''}
         </div>
 
         <div className="form">
