@@ -8,39 +8,21 @@
       "setup": {}
     },
     {
-      "id": 2,
-      "name": "john",
-      "designation": "it",
-      "place": "uae"
-    },
-    {
       "id": 3,
       "name": "tessa",
       "designation": "manager",
       "place": "canada"
     },
     {
-      "id": 4,
-      "name": "kumar",
-      "designation": "architectjshjsfh",
-      "place": "us"
-    },
-    {
-      "id": 5,
+      "id": "123",
       "name": "Muhammed safvan",
       "designation": "Web Developer",
-      "place": "India"
+      "place": "mmmm"
     },
     {
-      "id": "15",
+      "id": "7",
       "name": "safvan",
-      "designation": "Web Developer",
-      "place": "Calicut"
-    },
-    {
-      "id": "123",
-      "name": "Salmanul Faris Pk",
-      "designation": "Web Developer",
+      "designation": "Cricketer",
       "place": "mmmm"
     }
   ]

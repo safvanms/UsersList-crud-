@@ -4,14 +4,22 @@
      display: flex;
      justify-content: space-around;
      align-items: center;
+     position: sticky;
+     top: 0;
 }
 
 h3{
-     margin-left: 20px;
      text-decoration: none !important;
-    color: rgb(97, 16, 237);
+    color: rgb(36, 36, 37);
 }
 
 h3:hover{
-     color: black;
+     color: rgb(167, 164, 164);
 }
+
+.active {
+     background-color: #ddd;
+     font-weight: bold;
+     border-radius: 10px;
+     width: fit-content;
+   }

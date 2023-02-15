@@ -2,9 +2,10 @@
   "users": [
     {
       "id": 1,
-      "name": "mike",
+      "name": "mikes",
       "designation": "software",
-      "place": "uk"
+      "place": "uksdsds",
+      "setup": {}
     },
     {
       "id": 2,
@@ -21,8 +22,9 @@
     {
       "id": 4,
       "name": "kumar",
-      "designation": "architect",
+      "designation": "architectjshjsfh",
       "place": "us"
     }
+   
   ]
 }

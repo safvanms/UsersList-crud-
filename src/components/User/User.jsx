@@ -10,16 +10,19 @@ const initial = {
 }
 
 export default function User() {
-  const [datas, setDatas] = useState('')
+  const [datas, setDatas] = useState(0)
   const [formData, setFormData] = useState(initial)
   const [editId, setEditId] = useState(null)
   const [editMode, setEditMode] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   //user details getting from json server by axios
 
   useEffect(() => {
+	setLoading(true)
     axios.get('http://localhost:3000/users').then((res) => {
       setDatas(res.data)
+	  setLoading(false)
     })
   }, [])
 
@@ -35,8 +38,10 @@ export default function User() {
     if (editMode === true) {
       updateItem()
     } else {
+		setLoading(true)
       await axios.post('http://localhost:3000/users', formData)
       setDatas([...datas, formData])
+	  setLoading(false)
       setFormData(initial)
     }
   }
@@ -60,6 +65,7 @@ export default function User() {
       id: editId,
       ...formData,
     }
+	setLoading(true)
     const setup = axios.put(`http://localhost:3000/users/${editId}`, updates)
     setDatas(
       datas.map((element) => {
@@ -69,6 +75,7 @@ export default function User() {
         return element
       }),
     )
+	setLoading(false)
     setEditId(null)
     setEditMode(false)
     setFormData(initial)
@@ -77,38 +84,52 @@ export default function User() {
   // for delete a user
 
   function handleDelete(id) {
-    const delteItem = datas.filter((data) => {
-      return data.id !== id
-    })
-    setDatas(delteItem)
+	setLoading(true);
+  
+	axios.delete(`http://localhost:3000/users/${id}`)
+	  .then(() => {
+		const filteredData = datas.filter((data) => data.id !== id);
+		if (window.confirm('Are you sure you want to delete this item?')) {
+		  setDatas(filteredData);
+		}
+		setLoading(false);
+	  })
+	  .catch((error) => {
+		console.error(`Failed to delete data with ID ${id}. Error: ${error}`);
+		setLoading(false);
+	  });
   }
 
   return (
     <>
-    <div className="head">
-	<h1>Users</h1>
-    </div>
-    
+      <div className="head">
+        <h1>Users</h1>
+      </div>
       <div className="users-page">
         <div className="details">
-          {datas
-            ? datas.map(({ id, name, designation, place }) => {
-                return (
-                  <div className="container">
-                    <p>{id}</p>
-                    <p>{name}</p>
-                    <p>{designation}</p>
-                    <p>{place}</p>
-                    <button onClick={() => handleEdit(id)}>Edit Details</button>
-                    <br />
-                    <button className="delete" onClick={() => handleDelete(id)}>
-                      Dlete User
-                    </button>
-                    <br />
-                  </div>
-                )
-              })
-            : ''}
+			{loading && <div className="load">
+				<div className='loader'></div>
+				</div>}
+          {datas ? (
+            datas.map(({ id, name, designation, place }) => {
+              return (
+                <div className="container">
+                  <p>Id : {id}</p>
+                  <p>Name : {name}</p>
+                  <p>Designation : {designation}</p>
+                  <p>Place : {place}</p>
+                  <button onClick={() => handleEdit(id)}>Edit Details</button>
+                  <br />
+                  <button className="delete" onClick={() => handleDelete(id)}>
+                    Dlete User
+                  </button>
+                  <br />
+                </div>
+              )
+            })
+          ) : (
+           ""
+          )}
         </div>
 
         <div className="form">
